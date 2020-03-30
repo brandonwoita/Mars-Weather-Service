@@ -19,3 +19,16 @@
     --clr-accent: #D06D6D;
     --clr-accent-dark: #613131;
   }
+
+//   Accesibility for screen readers. Allows for content to be hidden from sighted users while still allowing Assistive Technology to discover and interact with the content.
+  .sr-only:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+
