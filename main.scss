@@ -1,6 +1,7 @@
 *,
 *::before,
 *::after {
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
 
@@ -21,9 +22,10 @@
   }
 
 //   Accesibility for screen readers. Allows for content to be hidden from sighted users while still allowing Assistive Technology to discover and interact with the content.
-  .sr-only:not(:focus):not(:active) {
+.sr-only:not(:focus):not(:active) {
     clip: rect(0 0 0 0);
-    clip-path: inset(50%);
+    -webkit-clip-path: inset(50%);
+            clip-path: inset(50%);
     height: 1px;
     overflow: hidden;
     position: absolute;
@@ -44,9 +46,11 @@ body {
 
 }
 
-// typography
-h1, h2, h3 {line-height: 1; }
-//
+//typography
+h1, h2, h3 {
+    line-height: 1; 
+}
+
 
 a {
     color: var(--clr-accent);
@@ -74,6 +78,12 @@ a {
     margin: 0;
 }
 
+.reading {
+    font-size: var(--fs-h1);
+    margin: 0;
+    color: var(--clr-gray);
+}
+
 .section-title--date {
     font-size: var(--fs-xl);
 }
@@ -85,21 +95,63 @@ a {
     margin: 4em 0 0 4em;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2em;
 
 }
 
 .date {
     grid-column: 1 / 2;
+
+    &__day {
+        font-size: var(--fs-h2);
+        margin: 0;
+        color: var(--clr-gray);
+        font-weight: var(--fw-light);
+    }
 }
 
 .temp {
+    --border: solid .25em var(--clr-accent-dark)
     grid-column: 2 / 3;
-
+    border-left: var(--border);
+    border-right: var(--border);
+    padding-left: 0 2em;
 }
 
 .wind {
     grid-column: 3 / 4;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: min-content 1fr;
+    align-self: start;
+  
+    .section-title,
+    .reading {
+        grid-column: 2 / 3;
+    }
 
+    &__direction {
+        --size: 6rem;
+        width: var(--size);
+        height: var(--size);
+        border-radius: 50%;
+        background-color: rgba(255,255,255,.5);
+        display: grid;
+        place-items: center;
+        grid-row: 1 / span 2;
+    }
+
+    &__arrow {
+        --direction: 180deg;
+        --size: 1em;
+        height: calc(var(--size) * 3);
+        width: var(--size);
+        background: var(--clr-accent-dark);
+        clip-path: polygon(50% 0, 0%, 100%, 100%, 100%);
+        transform: translateY(-50%)rotate(var(--direction));
+        transform-origin: bottom center;
+
+    }
 }
 
 .info {
