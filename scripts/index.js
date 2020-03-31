@@ -90,7 +90,7 @@ function displayDate(date) {
 function displayTemperature(temperature) {
 	let returnTemp = temperature
 	if (!isMetric()) {
-		returnTemp = (temperature - 32) * (5 / 9)   		 //conversion between C and F
+		returnTemp = (temperature * 9/5) + 32   		 //conversion between C and F
 	}
 	return Math.round(returnTemp)			 //rounding temp to whole numbers
 }
